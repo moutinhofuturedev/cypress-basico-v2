@@ -27,6 +27,7 @@ body {
     justify-content: center;
     margin: auto;
     display: grid;
+    height: 100vh;
 }
 
 input, select, textarea, button {
@@ -74,15 +75,16 @@ textarea {
 }
 
 .button {
-    font-size: 1.2em;
+    font-size: 1em;
     background: #4fc4cf;
     border: #181818 solid 2px;
     color: #181818;
-    padding: 0.8em 1.2em;
+    padding: 0.5em 1.2em;
     font-weight: bold;
     margin: auto;
     display: block;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .button:hover {
