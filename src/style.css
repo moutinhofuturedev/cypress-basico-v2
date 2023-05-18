@@ -140,7 +140,7 @@ input[type="radio"] {
 }
 
 .required-mark {
-    color: #2e2e2e;
+    color: #e41a1a;
     font-size: 0.9em;
 }
 
