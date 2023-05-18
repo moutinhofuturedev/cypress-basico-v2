@@ -31,5 +31,19 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get('#open-text-area').type(mockText.textError);
     cy.get("button[type='submit']").click();
     cy.get(".error").should("be.visible");
+  });
+
+  it("deve verificar se campo numérico esta sendo preenchido com letras", () => {
+    cy.get("#phone").type("asdfgh").should("have.value", "")
+  });
+
+  it("deve exibir mensagem quando campo de telefone for obrigatório", () => {
+    cy.get('#firstName').type("Paulo");
+    cy.get('#lastName').type("Moutinho");
+    cy.get('#email').type("paulo_vicali@icloud.com");
+    cy.get('#phone-checkbox').click()
+    cy.get('#open-text-area').type(mockText.textError);
+    cy.get("button[type='submit']").click();
+    cy.get(".error").should("be.visible");
   })
 })
