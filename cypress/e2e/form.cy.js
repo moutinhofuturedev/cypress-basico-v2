@@ -59,7 +59,7 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get(".error").should("be.visible");
   });
 
-  it.only("deve enviar o formulário com sucesso usando um comando customizado", () => {
+  it("deve enviar o formulário com sucesso usando um comando customizado", () => {
     cy.fillMandatoryFieldsAndSubmit("Paulo", "Moutinho", "paulo_vicpj@hotmail.com", "965353340", "Testando 1234")
     cy.get(".success").should("be.visible");
   })
