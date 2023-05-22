@@ -62,5 +62,18 @@ describe("Central de atendetimento ao Cliente", () => {
   it("deve enviar o formulário com sucesso usando um comando customizado", () => {
     cy.fillMandatoryFieldsAndSubmit("Paulo", "Moutinho", "paulo_vicpj@hotmail.com", "965353340", "Testando 1234")
     cy.get(".success").should("be.visible");
-  })
+  });
+
+  it("selecione um produto ( Youtube ) por seu texto", () => {
+    cy.get('#product').select("YouTube").should("have.value", "youtube");
+  });
+
+  it("selecione um produto ( Mentoria ) pelo seu valor", () => {
+    const mentoring = "mentoria";
+    cy.get('#product').select(mentoring).should("have.value", mentoring);
+  });
+
+  it("selecione um produto ( blog ) por seu índice", () => {
+    cy.get('#product').select(1).should("have.value", "blog");
+  });
 });
