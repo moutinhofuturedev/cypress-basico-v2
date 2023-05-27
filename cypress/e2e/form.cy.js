@@ -27,7 +27,7 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get('#firstName').type("Paulo");
     cy.get('#lastName').type("Moutinho");
     cy.get('#email').type("paulo_vicali@icloud,com");
-    cy.get('#phone').type("965353340");
+    cy.get('#phone-checkbox').check().should("be.checked");
     cy.get('#open-text-area').type(mockText.textError);
     cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
@@ -41,7 +41,7 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get('#firstName').type("Paulo");
     cy.get('#lastName').type("Moutinho");
     cy.get('#email').type("paulo_vicali@icloud.com");
-    cy.get('#phone-checkbox').click()
+    cy.get('#phone-checkbox').check()
     cy.get('#open-text-area').type(mockText.textError);
     cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
@@ -89,5 +89,10 @@ describe("Central de atendetimento ao Cliente", () => {
       cy.wrap(radio).check();
       cy.wrap(radio).should("be.checked");
     });
+  });
+
+  // type check
+  it("marca ambos os checkboxes, depois desmarca o último", () => {
+    cy.get("input[type='checkbox']").check().should("be.checked").first().uncheck().should("not.be.checked");
   });
 });
