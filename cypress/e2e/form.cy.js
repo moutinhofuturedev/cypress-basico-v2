@@ -95,4 +95,18 @@ describe("Central de atendetimento ao Cliente", () => {
   it("marca ambos os checkboxes, depois desmarca o último", () => {
     cy.get("input[type='checkbox']").check().should("be.checked").first().uncheck().should("not.be.checked");
   });
+
+  // type file
+  it("deve selecionar um arquivo de pasta", () => {
+    cy.get("input[type='file'").should("not.have.value").selectFile("cypress/fixtures/example.json").should((input) => {
+      expect(input[0].files[0].name).equal("example.json");
+    });
+  });
+
+  // type file - usando o efeito "drag-and-drop", arrasta arquivo e solta
+  it("deve selecionar um arquivo usando drag-and-drop", () => {
+    cy.get("input[type='file'").should("not.have.value").selectFile("cypress/fixtures/example.json", { action: "drag-drop" }).should((input) => {
+      expect(input[0].files[0].name).equal("example.json");
+    });
+  });
 });
