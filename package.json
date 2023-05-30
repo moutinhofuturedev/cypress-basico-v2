@@ -15,6 +15,6 @@
     "Cypress Básico"
   ],
   "devDependencies": {
-    "cypress": "^12.12.0"
+    "cypress": "^9.5.1"
   }
 }
