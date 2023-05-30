@@ -98,15 +98,26 @@ describe("Central de atendetimento ao Cliente", () => {
 
   // type file
   it("deve selecionar um arquivo de pasta", () => {
-    cy.get("input[type='file'").should("not.have.value").selectFile("cypress/fixtures/example.json").should((input) => {
+    cy.get("input[type='file']").should("not.have.value").selectFile("cypress/fixtures/example.json").should((input) => {
       expect(input[0].files[0].name).equal("example.json");
     });
   });
 
   // type file - usando o efeito "drag-and-drop", arrasta arquivo e solta
   it("deve selecionar um arquivo usando drag-and-drop", () => {
-    cy.get("input[type='file'").should("not.have.value").selectFile("cypress/fixtures/example.json", { action: "drag-drop" }).should((input) => {
+    cy.get("input[type='file']").should("not.have.value").selectFile("cypress/fixtures/example.json", { action: "drag-drop" }).should((input) => {
       expect(input[0].files[0].name).equal("example.json");
     });
+  });
+
+  // links
+  it("deve verificar link que abre em outra aba a política de privacidade sem necessidade de click", () => {
+    cy.get("#privacy a").should("have.attr", "target", "_blank")
+  });
+
+  it("deve verificar link que abre em outra aba a política de privacidade removendo o target", () => {
+    cy.get("#privacy a").invoke("removeAttr", "target").click();
+
+    cy.contains("Talking About Testing").should("be.visible");
   });
 });
