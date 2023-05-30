@@ -2,7 +2,7 @@
 
 👋 Seja bem-vindo(a)!
 
-## O que você vai ver neste projeto?
+## O que eu aprendi neste projeto?
 
 - Como configurar um projeto Cypress do zero
 - Como visitar páginas locais e remotas
@@ -15,3 +15,15 @@
 - Como resolver os mesmos problemas de diferentes formas, conhecendo a [API do Cypress](https://docs.cypress.io/api/table-of-contents)
 - Como executar os testes em um _pipeline_ de integração contínua sempre que mudanças ocorrerem no código da aplicação (ou dos testes)
 - Como criar uma documentação mínima para seu projeto de testes automatizados
+
+---
+
+## Para rodar os testes da aplicação
+
+- __modo interativo__ : npm run cy:open
+- __modo interativo versão mobile__ : npm run cy:open:mobile
+- __modo headless__ : npm run cy:test
+- __modo headless versão mobile__ : npm run test:mobile 
+
+---
+Obrigado 😎
