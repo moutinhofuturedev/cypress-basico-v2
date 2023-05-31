@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import { mockText } from "../../src/mock";
+import { fillMandatoryFieldsAndSubmit }  from "../support/commands"
 
 describe("Central de atendetimento ao Cliente", () => {
   beforeEach(() => {
@@ -60,8 +61,8 @@ describe("Central de atendetimento ao Cliente", () => {
   });
 
   // comando customizado
-  it("deve enviar o formulário com sucesso usando um comando customizado", () => {
-    cy.fillMandatoryFieldsAndSubmit("Paulo", "Moutinho", "paulo_vicpj@hotmail.com", "965353340", "Testando 1234");
+  it.only("deve enviar o formulário com sucesso usando um comando customizado", () => {
+    cy.fillMandatoryFieldsAndSubmit("Ian", "Gomes", "gomes_broche@gmail.com", "987876543", "Testando");
     cy.get(".success").should("be.visible");
   });
 
