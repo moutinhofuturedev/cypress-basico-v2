@@ -61,7 +61,7 @@ describe("Central de atendetimento ao Cliente", () => {
   });
 
   // comando customizado
-  it.only("deve enviar o formulário com sucesso usando um comando customizado", () => {
+  it("deve enviar o formulário com sucesso usando um comando customizado", () => {
     cy.fillMandatoryFieldsAndSubmit("Ian", "Gomes", "gomes_broche@gmail.com", "987876543", "Testando");
     cy.get(".success").should("be.visible");
   });
