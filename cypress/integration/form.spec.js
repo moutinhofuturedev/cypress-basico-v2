@@ -35,7 +35,7 @@ describe("Central de atendetimento ao Cliente", () => {
   });
 
   it("deve verificar se campo numérico esta sendo preenchido com letras", () => {
-    cy.get("#phone").type("asdfgh").should("have.value", "")
+    cy.get("#phon").type("asdfgh").should("have.value", "")
   });
 
   it("deve exibir mensagem quando campo de telefone for obrigatório", () => {
