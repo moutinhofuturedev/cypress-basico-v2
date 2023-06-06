@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 import { mockText } from "../../src/mock";
-import { fillMandatoryFieldsAndSubmit }  from "../support/commands"
 
 describe("Central de atendetimento ao Cliente", () => {
   beforeEach(() => {
@@ -120,5 +119,17 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get("#privacy a").invoke("removeAttr", "target").click();
 
     cy.contains("Talking About Testing").should("be.visible");
+  });
+
+  // time of message
+  it("deve exibir a mensagem por três segundos", () => {
+    cy.clock()
+
+    cy.fillMandatoryFieldsAndSubmit("Ricardo", "Mendes", "mendes_broche@gmail.com", "911223344", "Receba meu email");
+    cy.get(".success").should("be.visible");
+
+    cy.tick(3000);
+
+    cy.get(".success").should("not.be.visible");
   });
 });
