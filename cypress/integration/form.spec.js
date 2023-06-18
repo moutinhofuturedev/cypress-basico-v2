@@ -14,6 +14,8 @@ describe("Central de atendetimento ao Cliente", () => {
   });
 
   it("deve preencher os capmos obrigatórios e enviar formulário", () => {
+    cy.clock();
+
     cy.get('#firstName').type("Paulo");
     cy.get('#lastName').type("Moutinho");
     cy.get('#email').type("paulo_vicali@icloud.com");
@@ -21,6 +23,10 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.get('#open-text-area').type(mockText.text, { delay: 0 });
     cy.contains("button", "Enviar").click();
     cy.get(".success").should("be.visible");
+
+    cy.tick(3000)
+
+    cy.get(".success").should("not.be.visible");
   });
 
   it("deve exibir mensagem de erro", () => {
@@ -123,7 +129,7 @@ describe("Central de atendetimento ao Cliente", () => {
 
   // time of message
   it("deve exibir a mensagem por três segundos", () => {
-    cy.clock()
+    cy.clock();
 
     cy.fillMandatoryFieldsAndSubmit("Ricardo", "Mendes", "mendes_broche@gmail.com", "911223344", "Receba meu email");
     cy.get(".success").should("be.visible");
@@ -131,5 +137,33 @@ describe("Central de atendetimento ao Cliente", () => {
     cy.tick(3000);
 
     cy.get(".success").should("not.be.visible");
+  });
+
+  it("deve exibir e esconder as mensagens de sucesso e erro usando o .invoke", () => {
+    cy.get(".success").should("not.be.visible").invoke("show").should("be.visible")
+    .and("contain", "Mensagem enviada com sucesso")
+    .invoke("hide").should("not.be.visible")
+
+    cy.get(".error").should("not.be.visible").invoke("show").should("be.visible")
+    .and("contain", "Valide os campos obrigatórios")
+    .invoke("hide").should("not.be.visible")
+  });
+
+  // requisição HTTP
+  it("deve testar requisição HTTP", () => {
+    cy.request("https://cac-tat.s3.eu-central-1.amazonaws.com/index.html")
+    .should((response) => {
+      const { status, statusText, body } = response
+
+      expect(status).to.equal(200);
+      expect(statusText).to.equal("OK");
+      expect(body).to.include("CAC TAT");
+    });
+  });
+
+  it("deve encontrar e exibir o gato escondido", () => {
+    cy.get("#cat").should("not.be.visible")
+    .invoke("show").should("be.visible")
+    .and("contain", "🐈");
   });
 });
